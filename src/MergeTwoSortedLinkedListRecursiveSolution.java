@@ -172,7 +172,34 @@ public class MergeTwoSortedLinkedListRecursiveSolution {
  *
  * Extra space complexity: O(n + m)
  *
- * This recursive solution uses call-stack space. In the worst case, there can
- * be one recursive call for nearly every node. An iterative solution can
- * perform the same merge with O(1) extra space.
+ * LAST-MINUTE MEMORY NOTE:
+ *
+ * A recursive call does NOT receive copies of two complete linked lists and
+ * does NOT create new list nodes. It receives only two references pointing to
+ * the current heads of the remaining sublists:
+ *
+ *     mergeTwoLists(node3, node2)
+ *
+ *     head1 -> 3 -> 5 -> 7
+ *     head2 -> 2 -> 4 -> 6 -> 8
+ *
+ * This particular call compares only nodes 3 and 2. The other nodes remain
+ * reachable through next references; they are not copied into the call.
+ *
+ * Each call therefore uses only O(1) space. However, earlier calls must stay
+ * paused on the call stack until deeper calls return:
+ *
+ *     merge(1, 2)  waiting to set node1.next
+ *     merge(3, 2)  waiting to set node2.next
+ *     merge(3, 4)  waiting to set node3.next
+ *     merge(5, 4)  waiting to set node4.next
+ *     ...
+ *
+ * In the worst case, there are O(n + m) active stack frames:
+ *
+ *     O(1) space per call * O(n + m) calls = O(n + m) stack space
+ *
+ * So the extra space comes from the growing recursion stack, not from copying
+ * or creating linked-list nodes. The iterative dummy-node solution avoids the
+ * growing call stack and therefore uses O(1) extra space.
  */
