@@ -20,7 +20,7 @@ public class RemoveDuplicatesFromLinkedList {
             }
 
             currentNode.next = nextDistinctNode;
-            currentNode = currentNode.next;
+            currentNode = currentNode.next; // or nextDistinctNode
         }
 
         // linkedList still points to the head (first node). Returning the head
