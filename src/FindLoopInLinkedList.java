@@ -46,7 +46,7 @@ public class FindLoopInLinkedList {
         if (current == null) {
             System.out.println(" -> null (no loop)");
         } else {
-            System.out.println(current.value + " (loop starts here again)");
+            System.out.println(current.value + " (linked list with loop is here!)");
         }
     }
 
@@ -72,6 +72,7 @@ public class FindLoopInLinkedList {
         boolean hasCycle = loopStart != null;
         System.out.println("Does the linked list have a cycle? "
                 + (hasCycle ? "Yes" : "No"));
+        printListWithLoop(loopStart);
     }
 }
 
