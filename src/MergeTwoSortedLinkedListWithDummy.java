@@ -10,36 +10,55 @@ public class MergeTwoSortedLinkedListWithDummy {
         }
     }
 
-    public static LinkedList mergeTwoLists(LinkedList head1, LinkedList head2) {
-        // dummy always stays at the beginning of the merged list.
-        // current moves forward as nodes are attached.
-        LinkedList dummy = new LinkedList(-1);
-        LinkedList current = dummy;
+    public static LinkedList mergeTwoLists(LinkedList list1, LinkedList list2) {
+    // Example Input:
+    // l1 = 1 → 3 → 5
+    // l2 = 2 → 4 → 6
+        LinkedList dummy = new LinkedList(-1);// final result is in here -1 is start pointer
+        LinkedList current = dummy; // this is a pointer 
 
-        while (head1 != null && head2 != null) {
-            if (head1.value < head2.value) {
-                current.next = head1;
-                head1 = head1.next;
-            } else {
-                current.next = head2;
-                head2 = head2.next;
+    // Initial State:
+    // dummy = (-1) → null
+    // current = (-1) → null
+    // l1 = (1 → 3 → 5)
+    // l2 = (2 → 4 → 6)
+
+        while( list1 !=null && list2 !=null){
+
+            if( list1.value < list2.value){ // Compare current values
+                
+                current.next = list1; // Attach l1 node to merged list
+                list1 = list1.next;// Move forward
+             // After this step:
+            // dummy = (-1) → (1) → null
+            // current = (1) → null
+            // l1 = (3 → 5)
+            // l2 = (2 → 4 → 6)
+            }else{
+                current.next = list2;
+                list2 = list2.next; // Move forward
+
             }
 
-            current = current.next;
+            current = current.next; //move forward
         }
+    // Loop continues...
+    // Next iteration picks `3` from l1, then `4` from l2, then `5` from l1, and finally `6` from l2.
 
-        if (head1 != null) {
-            current.next = head1;
+    // After full merging:
+    // dummy = (-1) → (1 → 2 → 3 → 4 → 5 → 6)
+    // current = (6) → null
+    // l1 = null
+    // l2 = null
+
+    // Attach remaining elements if one list is exhausted
+
+        if(list1 !=null){
+            current.next = list1;
+        } else if(list2 !=null){
+            current.next = list2;
         }
-
-        if (head2 != null) {
-            current.next = head2;
-        }
-
-        // Do not return current.next. current is now near the end of the list,
-        // so that would return only the remaining tail (or null). dummy still
-        // points to the beginning; dummy.next is the head of the entire merge.
-        return dummy.next;
+        return dummy.next; // -1 -> 1->2 -3 etc  to start at list dummy.next 
     }
 
     private static void printList(LinkedList head) {
@@ -107,21 +126,21 @@ public class MergeTwoSortedLinkedListWithDummy {
  *
  * Initially:
  *
- *     dummy/current        head1              head2
+ *     dummy/current        list1              list2
  *           |                |                  |
  *           v                v                  v
  *          -1                1 -> 3 -> 5 -> 7   2 -> 4 -> 6 -> 8
  *
- * Compare head1.value and head2.value. Since 1 is smaller, connect current to
- * node 1, advance head1, and then advance current:
+ * Compare list1.value and list2.value. Since 1 is smaller, connect current to
+ * node 1, advance list1, and then advance current:
  *
- *     current.next = head1;
- *     head1 = head1.next;
+ *     current.next = list1;
+ *     list1 = list1.next;
  *     current = current.next;
  *
  * Now the references look like this:
  *
- *     dummy       current     head1              head2
+ *     dummy       current     list1              list2
  *       |            |         |                  |
  *       v            v         v                  v
  *      -1 ->          1         3 -> 5 -> 7        2 -> 4 -> 6 -> 8
@@ -144,6 +163,9 @@ public class MergeTwoSortedLinkedListWithDummy {
  *
  *     return dummy.next;
  *
+ * The algorithm creates only one dummy node. All other nodes are the original
+ * nodes from list1 and list2, reconnected through their next references.
+ *
  * ============================================================
  * COMPLEXITY
  * ============================================================
@@ -155,6 +177,6 @@ public class MergeTwoSortedLinkedListWithDummy {
  *
  * Extra space complexity: O(1)
  *
- * Only dummy and current are added, and the original nodes are reused. The
- * number of extra references does not grow with the input size.
+ * Only one dummy node and a fixed number of references are added. The original
+ * nodes are reused, so extra memory does not grow with the input size.
  */
