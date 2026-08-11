@@ -19,8 +19,8 @@ public class RemoveDuplicatesFromLinkedList {
                 nextDistinctNode = nextDistinctNode.next;
             }
 
-            currentNode.next = nextDistinctNode;
-            currentNode = currentNode.next; // or nextDistinctNode
+            currentNode.next = nextDistinctNode; //BYPASS duplicates 1-3 removing duplicates makes a new LL
+            currentNode = currentNode.next; // or nextDistinctNode MOVE current pointer forward and repeat
         }
 
         // linkedList still points to the head (first node). Returning the head
