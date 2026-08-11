@@ -19,7 +19,7 @@ public class ReverseLinkedList {
             p2 = p3;
         }
 
-        return p1;
+        return p1; // when p2 reaches null, p1 points to the new head of the reversed list
     }
 
 
