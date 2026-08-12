@@ -16,7 +16,7 @@ public class MergeKSortedArraysHeap {
          */
         PriorityQueue<Queue<Integer>> priorityQueue =
                 new PriorityQueue<>(
-                        (q1, q2) -> Integer.compare(q1.peek(), q2.peek())
+                        (a, b) -> Integer.compare(a.peek(), b.peek())
                 );
 
         /*
