@@ -91,6 +91,16 @@ public class MergeKSortedLinkedListsHeap {
         list3.next = new ListNode(6);
 
         ListNode[] lists = {list1, list2, list3};
+
+        System.out.print("First sorted list:  ");
+        printList(list1);
+
+        System.out.print("Second sorted list: ");
+        printList(list2);
+
+        System.out.print("Third sorted list: ");
+        printList(list3);
+
         ListNode mergedHead = mergeKLists(lists);
 
         System.out.print("Merged linked list: ");
