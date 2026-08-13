@@ -7,50 +7,41 @@ import java.util.Map;
 public class TopKFrequentElements {
     @SuppressWarnings("unchecked")
     public static int[] topKFrequent(int[] nums, int k) {
-        // Store how many times each number appears.
-        Map<Integer, Integer> frequencyMap = new HashMap<>();
+        Map<Integer, Integer> map = new HashMap<>();
 
         for (int num : nums) {
-            frequencyMap.put(num, frequencyMap.getOrDefault(num, 0) + 1);
+            map.put(num, map.getOrDefault(num, 0) + 1); // store frequencies in a map
         }
 
-        // buckets[frequency] stores every number that appears frequency times.
-        // The maximum possible frequency is nums.length, so the last valid
-        // index must be nums.length. That is why the array length is +1.
+        // Now lets keep all numbers into buckets based on frequencies
+        // now 0th bucket is useless but need nums.length +1 if all numbers are same in the array.
+        // say 5 number appears 5 times if we have 0-4 buckets as index starts with 0
+        // we don't have a bucket now for 5
         List<Integer>[] buckets = (List<Integer>[]) new ArrayList[nums.length + 1];
 
-        // Initialize every bucket before adding values to it.
-        for (int frequency = 0; frequency <= nums.length; frequency++) {
-            buckets[frequency] = new ArrayList<>();
+        // now fill the buckets. Each bucket has an array of numbers with those frequencies
+        for (int i = 0; i <= nums.length; i++) {
+            buckets[i] = new ArrayList<>();
         }
 
-        // Put each number into the bucket matching its frequency.
-        for (Map.Entry<Integer, Integer> entry : frequencyMap.entrySet()) {
-            int number = entry.getKey();
+        // Fill the buckets now from map based on freq
+        for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
             int frequency = entry.getValue();
-            buckets[frequency].add(number);
+            buckets[frequency].add(entry.getKey());
         }
 
-        int[] result = new int[k];
-        int resultIndex = 0;
-
-        // Visit buckets from highest frequency to lowest frequency.
-        // Stop as soon as k numbers have been selected.
-        for (int frequency = nums.length;
-             frequency >= 0 && resultIndex < k;
-             frequency--) {
-
-            for (int number : buckets[frequency]) {
-                result[resultIndex] = number;
-                resultIndex++;
-
-                if (resultIndex == k) {
-                    break;
-                }
-            }
+        // from top k buckets get top k elements so top to bottom
+        List<Integer> result = new ArrayList<>();
+        for (int i = nums.length; i >= 1 && result.size() < k; i--) { // we dont need 0th bucket so i>=1
+            result.addAll(buckets[i]); // adding top k buckets; each bucket can have more than 1 number
         }
 
-        return result;
+        int[] topk = new int[k]; // convert to array from list
+        for (int j = 0; j < k; j++) { // get top k elements from ArrayList
+            topk[j] = result.get(j);
+        }
+
+        return topk;
     }
 
     public static void main(String[] args) {
