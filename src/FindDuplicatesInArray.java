@@ -16,30 +16,30 @@ public class FindDuplicatesInArray {
     private List<Character> getDuplicateCharactersInArray(String name) {
         HashMap<Character,Integer> map = new HashMap<>();
         List<Character> duplicates = new ArrayList<>();
+
         for(char ch: name.toCharArray()){
-           map.put(ch,map.getOrDefault(ch,0)+1);
+            map.put(ch,map.getOrDefault(ch,0)+1);
         }
 
-        for(Map.Entry<Character,Integer> entry: map.entrySet()){
+        for(Map.Entry<Character,Integer> entry : map.entrySet()){
             if(entry.getValue() > 1){
                 duplicates.add(entry.getKey());
             }
         }
 
-
         return duplicates;
     }
 
     private void getDuplicates(int[] nums) {
-        HashMap<Integer, Integer> map = new HashMap<>();
         List<Integer> dup = new ArrayList<>();
+        HashMap<Integer,Integer> map = new HashMap<>();
 
-        for (int num : nums) {
-            map.put(num, map.getOrDefault(num, 0) + 1);
+        for(int num: nums){
+           map.put(num,map.getOrDefault(num,0)+1);
         }
 
-        for(Map.Entry<Integer,Integer> entry: map.entrySet()){
-            if(entry.getValue() > 1){
+        for(Map.Entry<Integer,Integer> entry : map.entrySet()){
+            if(entry.getValue() >1){
                 dup.add(entry.getKey());
             }
         }
