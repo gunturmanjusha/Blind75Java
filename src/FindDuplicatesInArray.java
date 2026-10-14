@@ -1,0 +1,61 @@
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+public class FindDuplicatesInArray {
+
+    public static void main(String[] args) {
+        FindDuplicatesInArray array = new FindDuplicatesInArray();
+        int[] nums = new int[]{1,1,4,5,6};
+        String name = "Manjusha";
+        array.getDuplicates(nums);
+        System.out.println(array.getDuplicateCharactersInArray(name));
+    }
+
+    private List<Character> getDuplicateCharactersInArray(String name) {
+        HashMap<Character,Integer> map = new HashMap<>();
+        List<Character> duplicates = new ArrayList<>();
+        for(char ch: name.toCharArray()){
+           map.put(ch,map.getOrDefault(ch,0)+1);
+        }
+
+        for(Map.Entry<Character,Integer> entry: map.entrySet()){
+            if(entry.getValue() > 1){
+                duplicates.add(entry.getKey());
+            }
+        }
+
+
+        return duplicates;
+    }
+
+    private void getDuplicates(int[] nums) {
+        HashMap<Integer, Integer> map = new HashMap<>();
+        List<Integer> dup = new ArrayList<>();
+
+        for (int num : nums) {
+            map.put(num, map.getOrDefault(num, 0) + 1);
+        }
+
+        for(Map.Entry<Integer,Integer> entry: map.entrySet()){
+            if(entry.getValue() > 1){
+                dup.add(entry.getKey());
+            }
+        }
+
+
+        System.out.println(dup);
+    }
+}
+
+
+// Time Complexity: O(n) average case
+// First loop: O(n) to build the frequency map.
+// Second loop: O(n) to iterate through the map and identify duplicates.
+// Total: O(n) + O(n) = O(n).
+
+// Space Complexity: O(n)
+// HashMap: O(n) to store element frequencies.
+// ArrayList: O(n) in the worst case to store duplicates.
+// Total: O(n) + O(n) = O(n).
