@@ -10,37 +10,47 @@ public class FourSum {
     }
 
     public static List<List<Integer>> fourSum(int[] nums, int target) {
+        // Sorting supports the two-pointer search and groups equal values together.
         Arrays.sort(nums);
         List<List<Integer>> result = new ArrayList<>();
         int n = nums.length;
+
+        // i must stop at n - 4. Written as i < n - 3, this leaves room for
+        // the three remaining positions: j, l, and k.
         for (int i = 0; i < n - 3; i++) {
 
+            // Skip the same first value so we do not add duplicate quadruplets.
             if (i > 0 && nums[i] == nums[i - 1]) {
                 continue;
             }
 
+            // j must stop at n - 3. Written as j < n - 2, this leaves room
+            // for the final two positions that the left and right pointers use.
             for (int j = i + 1; j < n - 2; j++) {
+                // The two pointers search for the last two values of the quadruplet.
                 int l = j + 1;
                 int k = n - 1;
 
-
+                // Skip the same second value for this i to keep results unique.
                 if (j > i + 1 && nums[j] == nums[j - 1]) {
                     continue;
                 }
 
                 while (l < k) {
+                    // Cast before adding so large int values cannot overflow.
                     long sum = (long) nums[i] + nums[j] + nums[l] + nums[k];
                     if (sum > target) {
+                        // A smaller right value is needed because the array is sorted.
                         k--;
                     } else if (sum < target) {
+                        // A larger left value is needed because the array is sorted.
                         l++;
                     } else {
                         result.add(Arrays.asList(nums[i], nums[j], nums[l], nums[k]));
                         l++;
                         k--;
 
-                        //handle duplicates
-
+                        // Skip repeated third and fourth values after recording a match.
                         while (l < k && nums[l] == nums[l - 1]) {
                             l++;
                         }
