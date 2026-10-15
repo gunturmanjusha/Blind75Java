@@ -73,6 +73,8 @@ public class ThreeSum {
  * - Each triplet contains 3 integers: O(3) = O(1).
  * - Best-case result space: O(1), when no triplets are found.
  * - Worst-case result space: O(n²), when O(n²) triplets exist.
+ * Meaning for a+b+c =0 ; a has n choices and b has n-1 choices and c has only one choice when you compute a + b;
+ * meaning for result = n X n-1 X 1 = O(n²-n) = O(n²)
  *
  * Overall Time Complexity: O(n²).
  * Overall Auxiliary Space (excluding output): O(log n).

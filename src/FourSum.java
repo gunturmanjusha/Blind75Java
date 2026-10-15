@@ -90,6 +90,8 @@ public class FourSum {
  * - Each quadruplet contains 4 integers: O(4) = O(1).
  * - Best-case result space: O(1), when no quadruplets are found.
  * - Worst-case result space: O(n³), when O(n³) quadruplets exist.
+ *  * Meaning for a+b+c+d  =0 ; a has n choices and b has n-1 choices and c has n-2 and d has only one choice when you compute a + b +c;
+ *   meaning for result = n X n-1 X n-2 X 1 = O(n³)
  *
  * Overall Time Complexity: O(n³).
  * Auxiliary Space (excluding output): O(log n) typically.
