@@ -7,24 +7,24 @@ public class FindDuplicatesInArray {
 
     public static void main(String[] args) {
         FindDuplicatesInArray array = new FindDuplicatesInArray();
-        int[] nums = new int[]{1,1,4,5,6};
+        int[] nums = new int[]{1, 1, 4, 5, 6};
         String name = "Manjusha";
         array.getDuplicates(nums);
         System.out.println(array.getDuplicateCharactersInArray(name));
     }
 
     private List<Character> getDuplicateCharactersInArray(String name) {
-        HashMap<Character,Integer> map = new HashMap<>();
+        HashMap<Character, Integer> map = new HashMap<>();
         List<Character> duplicates = new ArrayList<>();
 
-        for(char ch: name.toCharArray()){
+        for (char ch : name.toCharArray()) {
             // Count each character as it appears in the string.
-            map.put(ch,map.getOrDefault(ch,0)+1);
+            map.put(ch, map.getOrDefault(ch, 0) + 1);
         }
 
-        for(Map.Entry<Character,Integer> entry : map.entrySet()){
+        for (Map.Entry<Character, Integer> entry : map.entrySet()) {
             // A count greater than one means this character was repeated.
-            if(entry.getValue() > 1){
+            if (entry.getValue() > 1) {
                 duplicates.add(entry.getKey());
             }
         }
@@ -34,16 +34,16 @@ public class FindDuplicatesInArray {
 
     private void getDuplicates(int[] nums) {
         List<Integer> dup = new ArrayList<>();
-        HashMap<Integer,Integer> map = new HashMap<>();
+        HashMap<Integer, Integer> map = new HashMap<>();
 
-        for(int num: nums){
-           // Store how many times each number appears.
-           map.put(num,map.getOrDefault(num,0)+1);
+        for (int num : nums) {
+            // Store how many times each number appears.
+            map.put(num, map.getOrDefault(num, 0) + 1);
         }
 
-        for(Map.Entry<Integer,Integer> entry : map.entrySet()){
+        for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
             // entry.getKey() is the number; entry.getValue() is its count.
-            if(entry.getValue() >1){
+            if (entry.getValue() > 1) {
                 dup.add(entry.getKey());
             }
         }

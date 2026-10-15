@@ -6,43 +6,43 @@ import java.util.List;
 public class TwoSum {
 
     public static void main(String[] args) {
-    int [] nums = new int[]{2,7,3,4,5,6};
-    System.out.println(Arrays.toString(twoSum(nums,9)));
-        System.out.println(twoSumPairs(nums,9));
+        int[] nums = new int[]{2, 7, 3, 4, 5, 6};
+        System.out.println(Arrays.toString(twoSum(nums, 9)));
+        System.out.println(twoSumPairs(nums, 9));
     }
 
-  public static int[] twoSum(int[] nums, int target){
-        HashMap<Integer,Integer> map = new HashMap<>();
-        for (int i=0; i<nums.length ; i ++){
+    public static int[] twoSum(int[] nums, int target) {
+        HashMap<Integer, Integer> map = new HashMap<>();
+        for (int i = 0; i < nums.length; i++) {
             // The complement is the number needed with nums[i] to reach target.
             int diff = target - nums[i];
 
             // The map holds values from earlier positions, so one element cannot
             // be used twice in the same pair.
-            if(map.containsKey(diff)){
-                return new int[] {nums[i],diff};
+            if (map.containsKey(diff)) {
+                return new int[]{nums[i], diff};
             }
             // Save the current value after checking for its complement.
-            map.put(nums[i],i);
+            map.put(nums[i], i);
         }
         return new int[]{};
-  }
+    }
 
-  public static List<List<Integer>> twoSumPairs(int[] nums, int target){
+    public static List<List<Integer>> twoSumPairs(int[] nums, int target) {
         List<List<Integer>> result = new ArrayList<>();
-        HashMap<Integer,Integer> map = new HashMap<>();
+        HashMap<Integer, Integer> map = new HashMap<>();
 
-        for (int i=0; i<nums.length; i++){
+        for (int i = 0; i < nums.length; i++) {
             int diff = target - nums[i];
 
-            if(map.containsKey(diff)){
+            if (map.containsKey(diff)) {
                 // Keep searching after a match so every matching pair is returned.
-                result.add(Arrays.asList(nums[i],diff));
+                result.add(Arrays.asList(nums[i], diff));
             }
-            map.put(nums[i],i);
+            map.put(nums[i], i);
         }
         return result;
-  }
+    }
 }
 /*
  * TWO SUM — Return First Matching Pair

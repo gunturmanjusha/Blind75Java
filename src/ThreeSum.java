@@ -5,7 +5,7 @@ import java.util.List;
 public class ThreeSum {
 
     public static void main(String[] args) {
-        int[] nums = {-1,0,1,2,-1,-4};
+        int[] nums = {-1, 0, 1, 2, -1, -4};
         System.out.println(threeSum(nums));
     }
 
@@ -15,35 +15,35 @@ public class ThreeSum {
         Arrays.sort(nums);
         List<List<Integer>> result = new ArrayList<>();
         int n = nums.length;
-        for(int i=0; i<n-2 ; i++){ // n-2 since its a triplet no need j and k will be same at end so n-2
+        for (int i = 0; i < n - 2; i++) { // n-2 since its a triplet no need j and k will be same at end so n-2
             // Do not use the same first number twice; it would create the same triplet.
-            if(i>0 && nums[i] == nums[i-1]){
+            if (i > 0 && nums[i] == nums[i - 1]) {
                 continue;
             }
 
             // Search for the other two values on either side of the remaining range.
-            int j = i+1;
-            int k = n-1;
+            int j = i + 1;
+            int k = n - 1;
 
-            while(j<k){
+            while (j < k) {
                 int sum = nums[i] + nums[j] + nums[k];
-                if(sum > 0){
-                  // The array is sorted, so moving right would only increase the sum.
-                  k--;
-                }else if (sum < 0){
-                  // Moving left would decrease the sum, so move the left pointer right.
-                  j++;
-                }else{
-                    result.add(Arrays.asList(nums[i],nums[j],nums[k]));
+                if (sum > 0) {
+                    // The array is sorted, so moving right would only increase the sum.
+                    k--;
+                } else if (sum < 0) {
+                    // Moving left would decrease the sum, so move the left pointer right.
+                    j++;
+                } else {
+                    result.add(Arrays.asList(nums[i], nums[j], nums[k]));
                     j++;
                     k--;
 
                     // Skip repeated second and third values to keep triplets unique.
-                    while(j<k && nums[j] == nums[j-1]){
+                    while (j < k && nums[j] == nums[j - 1]) {
                         j++;
                     }
 
-                    while(j<k && nums[k] == nums[k+1]){
+                    while (j < k && nums[k] == nums[k + 1]) {
                         k--;
                     }
                 }
