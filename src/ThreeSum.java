@@ -15,7 +15,7 @@ public class ThreeSum {
         Arrays.sort(nums);
         List<List<Integer>> result = new ArrayList<>();
         int n = nums.length;
-        for(int i=0; i<n-2 ; i++){
+        for(int i=0; i<n-2 ; i++){ // n-2 since its a triplet no need j and k will be same at end so n-2
             // Do not use the same first number twice; it would create the same triplet.
             if(i>0 && nums[i] == nums[i-1]){
                 continue;
