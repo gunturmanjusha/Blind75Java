@@ -18,10 +18,12 @@ public class FindDuplicatesInArray {
         List<Character> duplicates = new ArrayList<>();
 
         for(char ch: name.toCharArray()){
+            // Count each character as it appears in the string.
             map.put(ch,map.getOrDefault(ch,0)+1);
         }
 
         for(Map.Entry<Character,Integer> entry : map.entrySet()){
+            // A count greater than one means this character was repeated.
             if(entry.getValue() > 1){
                 duplicates.add(entry.getKey());
             }
@@ -35,16 +37,18 @@ public class FindDuplicatesInArray {
         HashMap<Integer,Integer> map = new HashMap<>();
 
         for(int num: nums){
+           // Store how many times each number appears.
            map.put(num,map.getOrDefault(num,0)+1);
         }
 
         for(Map.Entry<Integer,Integer> entry : map.entrySet()){
+            // entry.getKey() is the number; entry.getValue() is its count.
             if(entry.getValue() >1){
                 dup.add(entry.getKey());
             }
         }
 
-
+        // Print only the numbers whose count was greater than one.
         System.out.println(dup);
     }
 }

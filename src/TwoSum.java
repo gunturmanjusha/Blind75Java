@@ -14,11 +14,15 @@ public class TwoSum {
   public static int[] twoSum(int[] nums, int target){
         HashMap<Integer,Integer> map = new HashMap<>();
         for (int i=0; i<nums.length ; i ++){
+            // The complement is the number needed with nums[i] to reach target.
             int diff = target - nums[i];
 
+            // The map holds values from earlier positions, so one element cannot
+            // be used twice in the same pair.
             if(map.containsKey(diff)){
                 return new int[] {nums[i],diff};
             }
+            // Save the current value after checking for its complement.
             map.put(nums[i],i);
         }
         return new int[]{};
@@ -32,6 +36,7 @@ public class TwoSum {
             int diff = target - nums[i];
 
             if(map.containsKey(diff)){
+                // Keep searching after a match so every matching pair is returned.
                 result.add(Arrays.asList(nums[i],diff));
             }
             map.put(nums[i],i);
